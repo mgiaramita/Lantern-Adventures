@@ -7,9 +7,10 @@ public class Player {
 	public Player(int posX, int posY){
 		this.posX = posX;
 		this.posY = posY;
-		health = 75;
+		health = 100;
 	}
 	
+	//Standard get and set methods for player attributes
 	public int getX(){
 		return posX;
 	}
@@ -26,5 +27,10 @@ public class Player {
 	
 	public int getHealth(){
 		return health;
+	}
+	
+	public void setHealth(int change){
+		//To decrease health call method with a negative integer, increase with positive
+		health += change;
 	}
 }

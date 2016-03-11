@@ -2,6 +2,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
 
 public class Map {
+	//holds map and player/enemy data for the loaded level and handles interactions on the map
 	private String map[][];
 	private int maxX;
 	private int maxY;
@@ -18,13 +19,15 @@ public class Map {
 		maxY = 20;
 		map = new String[50][20];
 		
-		numEnemy = 1;
-		enemyPos = new int[1][2];
-		enemyPos[0][0] = 48;
-		enemyPos[0][1] = 18;
+		//Create enemies on the map
+		numEnemy = 4;
+		enemyPos = new int[4][2];
+		enemyPos[0][0] = 48; enemyPos[1][0] = 9; enemyPos[2][0] = 21; enemyPos[3][0] = 3;
+		enemyPos[0][1] = 18; enemyPos[1][1] = 1; enemyPos[2][1] = 8; enemyPos[3][1] = 14;
 		
 		p1 = new Player(1, 1);
 		
+		//Don't have to put the 'E's on the map here because they are defined above
 		String row0 = "##################################################"; String row10 = "#            #      # # #   #     #  ### #   ### #";
 		String row1 = "#@    #    #     #   #          #                #"; String row11 = "####### # ####      # #     #     # ##   # # ### #";
 		String row2 = "#   # # ## # ##### # # ######## # # #### ####### #"; String row12 = "#       # ######### # ######### ### #  #   # ### #";
@@ -33,8 +36,9 @@ public class Map {
 		String row5 = "# ### ######     ### ### #### # # #### # #     # #"; String row15 = "# ###### #####      # #     ### ### # #### ### # #";
 		String row6 = "# ### #    # #   #   #      # #      #   ### ### #"; String row16 = "# #    # #####      # #     ### ### #        # # #";
 		String row7 = "# ###      # ##### # #      # #### # # ###   #   #"; String row17 = "# #### # ######## ### ###   #     # ######## # # #";
-		String row8 = "# ### #    #       #   ###### #    # # #   ### # #"; String row18 = "#                 ###                        #  E#";
+		String row8 = "# ### #    #       #   ###### #    # # #   ### # #"; String row18 = "#                 ###                        #   #";
 		String row9 = "# ### ###### ## #####   #     ######   # ###   # #"; String row19 = "##################################################"; 
+		//load the strings into the array by column
 		for(int i = 0; i < 50; i++){
 			map[i][0] = String.valueOf(row0.charAt(i)); map[i][10] = String.valueOf(row10.charAt(i));
 			map[i][1] = String.valueOf(row1.charAt(i)); map[i][11] = String.valueOf(row11.charAt(i));
@@ -52,6 +56,9 @@ public class Map {
 	//Allows creation of multiple levels, specify with level number > 1
 	//Will read custom levels from text file
 	public Map(int levelNo){
+		//I have decided to lock the screen size to default
+		//Change code that does not take this into account and make this constructor with that in mind
+		//maybe allow bigger maps but only show the portions that can fit on the screen where the player is
 		//TODO
 	}
 	
@@ -188,5 +195,13 @@ public class Map {
 	//Set the string held at a given map coordinate
 	public void setString(String set, int x, int y){
 		map[x][y] = set;
+	}
+	
+	//Allows access to player health data
+	public void hurtPlayer(){
+		p1.setHealth(-10);
+	}
+	public int getPlayerHealth(){
+		return p1.getHealth();
 	}
 }

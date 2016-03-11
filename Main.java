@@ -1,3 +1,11 @@
+/*
+ * Game Rules:
+ * --Move around using arrow keys
+ * --If you touch or get touched by an enemy you will be hurt
+ * --When your health bar empties the game is over
+ * --Stay alive for as long as possible
+ */
+
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.screen.Screen;
@@ -79,20 +87,50 @@ public class Main {
 				//wait for key press
 				key = screen.readInput();
 			}
-			
+			//enter to start escape to quit
 			switch(key.getKind()){
 				case Escape:
 					stop = true;
 					break;
 				case Enter:
-					//Start Game (Level Select?)
+					//Start Game (Level Select intermediate step??)
 					Game.startGame(screen);
 					stop = true;
 					break;
 			}
 		}
+		
+		gameOver(screen);
+		
 		screen.stopScreen();
 		System.exit(0);
 	}
 
+	//Game over text and maybe animation
+	public static void gameOver(Screen screen){
+		screen.clear();
+		String s0 = "     _____";
+	    String s1 = "  /~/~   ~\\ ";
+	    String s2 = " | |       \\";
+	    String s3 = " \\ \\        \\ ";
+	    String s4 = "  \\ \\        \\";
+	    String s5 = " --\\ \\       .\\''";
+	    String s6 = "--==\\ \\     ,,i!!i,";
+		String s7 = "  ''''',,}{,,";
+
+		screen.putString(6, 3, s0, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 4, s1, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 5, s2, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 6, s3, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 7, s4, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 8, s5, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 9, s6, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 10, s7, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		//Make this text fancy and place better on screen
+		screen.putString(6, 12, "    GAME OVER", Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.refresh();
+		
+		try { Thread.sleep(8000);
+		} catch (InterruptedException e) {}
+	}
 }

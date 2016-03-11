@@ -1,22 +1,23 @@
 import com.googlecode.lanterna.screen.Screen;
 
-
 public class Enemy extends Thread{
 	private int posX;
 	private int posY;
 	private Map map;
 	private Screen screen;
+	private boolean interrupted;
 	
 	public Enemy(int x, int y, Map map, Screen sc){
 		posX = x;
 		posY = y;
 		this.map = map;
 		screen = sc;
+		interrupted = false;
 	}
 	
 	public void run(){
 		map.PrintMap(screen);
-		while(true){
+		while(!interrupted){
 			double rand = 0;
 			
 			//Enemies are threads to allow them to move around the map freely
@@ -41,13 +42,19 @@ public class Enemy extends Thread{
 		}
 	}
 	
+	public void interrupt(){
+		interrupted = true;
+	}
+	
 	//The move methods check if the move is valid and they update the map and enemy location data
+	//Player is hurt any time that they touch the enemy check this condition after move
 	public void moveUp(){
 		if(posY > 0 && !map.getStringAt(posX, posY - 1).equals("#")){
 			map.setString(" ", posX, posY);
 			posY -= 1;
 			map.setString("E", posX, posY);
 		}
+		attack();
 	}
 	
 	public void moveDown(){
@@ -56,6 +63,7 @@ public class Enemy extends Thread{
 			posY += 1;
 			map.setString("E", posX, posY);
 		}
+		attack();
 	}
 	
 	public void moveLeft(){
@@ -64,6 +72,7 @@ public class Enemy extends Thread{
 			posX -= 1;
 			map.setString("E", posX, posY);
 		}
+		attack();
 	}
 	
 	public void moveRight(){
@@ -71,6 +80,14 @@ public class Enemy extends Thread{
 			map.setString(" ", posX, posY);
 			posX += 1;
 			map.setString("E", posX, posY);
+		}
+		attack();
+	}
+	
+	//if enemy is on the same space as the player attack them
+	public void attack(){
+		if(map.getPlayerX() == posX && map.getPlayerY() == posY){
+			map.hurtPlayer();
 		}
 	}
 }

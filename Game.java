@@ -2,6 +2,7 @@ import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Game {
+	//class initializes the level/map and handles player keyboard inputs
 	private static Map level;
 	public static void startGame(Screen screen){
 		//Load level
@@ -59,7 +60,26 @@ public class Game {
 					level.PrintMap(screen);
 					break;
 			}
+			
+			for(Enemy e: eList){
+				//after a player moves all the enemies try to attack
+				//if the player is on the same space as any of them the player will be hurt
+				e.attack();
+			}
+			//After the attacks check the player to see if the game is over
+			if(level.getPlayerHealth() <= 0){
+				stop = true;
+			}
 		}
+		
+		//stop all enemy threads so that final screen can be shown
+		for(Enemy e: eList){
+			e.interrupt();
+		}
+		//wait to guarantee that all threads have stopped before printing death screen
+		try { Thread.sleep(200);
+		} catch (InterruptedException e) {}
+		
 	}
 	
 	//Checks to see if a given movement can be made by the player
