@@ -96,11 +96,12 @@ public class Main {
 					//Start Game (Level Select intermediate step??)
 					Game.startGame(screen);
 					stop = true;
+					gameOver(screen);
 					break;
 			}
 		}
 		
-		gameOver(screen);
+		//gameOver(screen);
 		
 		screen.stopScreen();
 		System.exit(0);
@@ -118,19 +119,60 @@ public class Main {
 	    String s6 = "--==\\ \\     ,,i!!i,";
 		String s7 = "  ''''',,}{,,";
 
-		screen.putString(6, 3, s0, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 4, s1, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 5, s2, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 6, s3, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 7, s4, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 8, s5, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 9, s6, Terminal.Color.WHITE, Terminal.Color.BLACK);
-		screen.putString(6, 10, s7, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 8, s0, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 9, s1, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 10, s2, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 11, s3, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 12, s4, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 13, s5, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 14, s6, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(6, 15, s7, Terminal.Color.WHITE, Terminal.Color.BLACK);
 		//Make this text fancy and place better on screen
-		screen.putString(6, 12, "    GAME OVER", Terminal.Color.WHITE, Terminal.Color.BLACK);
+		//screen.putString(6, 12, "    GAME OVER", Terminal.Color.WHITE, Terminal.Color.BLACK);
+	
+		String g0 = "  ####";                              
+		String g1 = " #######";                             
+		String g2 = "####      ######  ##### ###    ###";   
+		String g3 = "###      ######  ##########  ######";  
+		String g4 = "##  ###  ### ##  ### ### ##  ##  ##";  
+		String g5 = "## ####  ##  ##  ##  ##  ##  ######";  
+		String g6 = "### ###  ## ###  ##  ##  ##  ###";     
+		String g7 = "#######  ###### ### ### ###  #####";   
+		String g8 = " #####   #####  ### ### ###   ####";   
+  
+		String g9 =  "  ####";                        
+		String g10 = " #######";                       
+		String g11 = "###  ###  ##  ###   ###    ####";  
+		String g12 = "###   ##  ## ###  ######  ######";  
+		String g13 = "##    ##  ## ##   ##  ##  ###";    
+		String g14 = "##   ###  #####   ######  ##";     
+		String g15 = "### ###   ####    ###     ##";     
+		String g16 = "#######   ####    #####  ###";     
+		String g17 = " ####     ###      ####  ###";     
+        
+		screen.putString(50, 3, g0, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 4, g1, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 5, g2, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 6, g3, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 7, g4, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 8, g5, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 9, g6, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 10, g7, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 11, g8, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		
+		screen.putString(50, 13, g9, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 14, g10, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 15, g11, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 16, g12, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 17, g13, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 18, g14, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 19, g15, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 20, g16, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		screen.putString(50, 21, g17, Terminal.Color.WHITE, Terminal.Color.BLACK);
+		
 		screen.refresh();
 		
-		try { Thread.sleep(8000);
+		try { Thread.sleep(4000);
 		} catch (InterruptedException e) {}
 	}
 }
