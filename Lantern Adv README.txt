@@ -6,5 +6,5 @@ Build Instructions
 2) Build with command: javac -cp lanterna-2.1.8.jar *.java
 
 3) Run with command one of the following commands
-	WINDOWS: java -cp .;lanterna-2.1.8.jar Main
-	MAC: java -cp .:lanterna-2.1.8.jar Main
+	WINDOWS:   java -cp .;lanterna-2.1.8.jar Main
+	MAC/LINUX: java -cp .:lanterna-2.1.8.jar Main
